@@ -1,0 +1,98 @@
+[build-system]
+requires = [
+    "setuptools>=69",
+    "wheel",
+    "build"
+]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "pthbz"
+version = "1.0.0"
+description = "Python SDK and CLI for creating short links with permanent 301 redirects, interstitial (anti-bot) redirects, and on-demand QR codes via pth.bz."
+readme = { file = "README.md", content-type = "text/markdown" }
+requires-python = ">=3.8"
+license = { file = "LICENSE" }
+authors = [
+    { name = "Avel Kox" }
+]
+keywords = [
+    "url shortener",
+    "link shortener",
+    "short link",
+    "short urls",
+    "301 redirect",
+    "permanent redirect",
+    "interstitial",
+    "anti-bot",
+    "referrer hiding",
+    "privacy",
+    "no tracking",
+    "utm",
+    "campaign tracking",
+    "marketing links",
+    "seo redirects",
+    "qr",
+    "qr code",
+    "qr generator",
+    "python sdk",
+    "http client",
+    "requests",
+    "httpx",
+    "asyncio",
+    "cli",
+    "tiny links",
+    "branded links",
+    "biolink",
+    "social links",
+    "pth.bz"
+]
+classifiers = [
+    "Development Status :: 5 - Production/Stable",
+    "Environment :: Console",
+    "Intended Audience :: Developers",
+    "Intended Audience :: Information Technology",
+    "License :: OSI Approved :: MIT License",
+    "Operating System :: OS Independent",
+    "Programming Language :: Python",
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3 :: Only",
+    "Programming Language :: Python :: 3.8",
+    "Programming Language :: Python :: 3.9",
+    "Programming Language :: Python :: 3.10",
+    "Programming Language :: Python :: 3.11",
+    "Programming Language :: Python :: 3.12",
+    "Topic :: Internet :: WWW/HTTP",
+    "Topic :: Internet :: WWW/HTTP :: HTTP",
+    "Topic :: Software Development :: Libraries :: Python Modules",
+    "Framework :: AsyncIO",
+    "Typing :: Typed"
+]
+
+dependencies = [
+    "requests>=2.31.0",
+    "httpx>=0.27.0",
+    "idna>=3.6"
+]
+
+[project.urls]
+Homepage = "https://pth.bz/"
+Documentation = "https://pth.bz/docs"
+Source = "https://pth.bz/"
+Issues = "https://pth.bz/"
+
+[project.scripts]
+pthbz = "pthbz.cli:main"
+
+[tool.setuptools]
+package-dir = { "" = "src" }
+
+[tool.setuptools.packages.find]
+where = [
+    "src"
+]
+
+[tool.setuptools.package-data]
+pthbz = [
+    "py.typed"
+]
