@@ -11,3 +11,6 @@
 
 ## 1.0.3 — 2025-08-11
 - metadata/packaging cleanup
+
+## 1.0.4 — 2025-08-11
+- metadata/packaging cleanup
