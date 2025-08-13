@@ -3,3 +3,10 @@ include LICENSE
 include CHANGELOG.md
 recursive-include src/pthbz *.py
 recursive-include tests *.py
+
+exclude tree_with_content.py
+exclude log.txt
+prune .venv
+
+global-exclude *.log
+global-exclude .DS_Store

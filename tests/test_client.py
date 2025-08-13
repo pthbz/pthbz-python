@@ -1,8 +1,9 @@
 from __future__ import annotations
 import json
+import pytest
 from pthbz.client import PthBzClient
 from pthbz.models import ShortenResponse
-from pthbz.exceptions import ApiBadRequest, RateLimitError
+from pthbz.exceptions import ApiBadRequest, RateLimitError, ValidationError
 import requests
 from requests.models import Response
 
@@ -32,18 +33,22 @@ def test_shorten_ok():
     assert isinstance(res, ShortenResponse)
     assert res.short_url_js.endswith("/i/AbC1234")
 
+def test_shorten_validation_error():
+    # URL not a valid URL
+    session = _DummySession(_DummyResp(200, {})) 
+    c = PthBzClient(session=session)
+    with pytest.raises(ValidationError):
+        c.shorten("notaurl")
+
 def test_shorten_bad_request():
+    # The server returned 400 — we need to throw ApiBadRequest
     session = _DummySession(_DummyResp(400, {"error": "Invalid URL"}))
     c = PthBzClient(session=session)
-    try:
-        c.shorten("notaurl")
-    except ApiBadRequest as e:
-        assert e.status_code == 400
+    with pytest.raises(ApiBadRequest):
+        c.shorten("https://example.com")  # valid URL to reach the “server”
 
 def test_shorten_rate_limit():
     session = _DummySession(_DummyResp(429, {"error": "Too many requests"}))
     c = PthBzClient(session=session)
-    try:
+    with pytest.raises(RateLimitError):
         c.shorten("https://example.com")
-    except RateLimitError as e:
-        assert e.status_code == 429

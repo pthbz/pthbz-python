@@ -9,3 +9,5 @@ dist/
 .venv
 .pytest_cache/
 .DS_Store
+tree_with_content.py
+log.txt
