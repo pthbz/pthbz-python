@@ -43,5 +43,5 @@ __all__ = [
     "build_qr_url",
 ]
 
-__version__ = "1.0.2"
+__version__ = "1.0.3"
 __author__ = "Avel Kox"
